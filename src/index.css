@@ -1,0 +1,40 @@
+/* Colors for the Site */
+
+:root {
+  --dark: #171717;
+  --text: #ffffffeb;
+}
+
+/* Global Defaults */
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Rosario", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Global Classes */
+
+.para {
+  margin: 1rem 0;
+  padding: 0.5rem 0;
+}
+
+@media screen (min-width: 1440px) {
+  html {
+    font-size: 24px;
+  }
+}

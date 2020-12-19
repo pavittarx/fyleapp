@@ -1,0 +1,43 @@
+{
+  "name": "@pavittarx/portfolio",
+  "version": "1.0.0",
+  "description": "portfolio website & repository for @pavittarx",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "run-s clean",
+    "build": "parcel build src/index.html --no-source-maps",
+    "clean": "rimraf ./dist",
+    "start": "node serve",
+    "dev": "parcel src/index.html --port 3000"
+  },
+  "keywords": [
+    "pavittarx",
+    "@pavittarx",
+    "fyle",
+    "fyleapp",
+    "assignment"
+  ],
+  "author": "pavittarx",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/styled-components": "^5.1.4",
+    "enzyme": "^3.11.0",
+    "jest": "^26.6.3",
+    "node-forge": "^0.10.0",
+    "npm-run-all": "^4.1.5",
+    "parcel-bundler": "^1.12.4",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.9",
+    "express": "^4.17.1",
+    "framer-motion": "^2.9.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1",
+    "tslib": "^2.0.3"
+  }
+}
