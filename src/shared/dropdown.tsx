@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import framer from "framer-motion";
 
+import DownIcon from "~/assets/icons/down.svg";
+
 type Dialog = {
   list: Array<string>;
   set: Function;
@@ -20,10 +22,19 @@ const Dropdown = {
 
     .button {
       padding: 0.5rem 1.5rem;
-      border: 1px solid #222222af;
+      background: #fff;
+      border: 1px solid #7777776a;
       border-radius: 50px;
 
+      opacity: 0.75;
+
       cursor: default;
+
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   `,
   Dialog: styled.section`
@@ -103,7 +114,10 @@ export default ({ list, current, set }: Dropdown) => {
 
   return (
     <Dropdown.Wrapper>
-      <div className="button" onClick={() => setOpen(true)}> {current} </div>
+      <div className="button" onClick={() => setOpen(true)}>
+        <span> {current} </span>
+        <img src={DownIcon} alt="down icon" />
+      </div>
       {open ? (
         <SelectionDialog
           list={list}

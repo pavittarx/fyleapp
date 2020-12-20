@@ -16,6 +16,8 @@ const Main = () => {
           current={(currentCity ? currentCity : "City")!}
           set={setCurrentCity}
         />
+
+        
       </HomeMain.Menu>
       <HomeMain.BodyArea>Cards Display</HomeMain.BodyArea>
       <HomeMain.Pagination>Pagination</HomeMain.Pagination>
