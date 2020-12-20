@@ -1,8 +1,8 @@
 /* Colors for the Site */
 
 :root {
-  --dark: #171717;
-  --text: #ffffffeb;
+  --bg: #f0f0f0;
+  --fg: #222222eb;
 }
 
 /* Global Defaults */
@@ -33,7 +33,7 @@ a {
   padding: 0.5rem 0;
 }
 
-@media screen (min-width: 1440px) {
+@media screen and (min-width: 1440px) {
   html {
     font-size: 24px;
   }
