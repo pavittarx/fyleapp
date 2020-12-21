@@ -27,9 +27,9 @@ const Dropdown = {
       border-radius: 50px;
 
       opacity: 0.75;
+      min-width: 10rem;
 
       cursor: default;
-
       height: 100%;
 
       display: flex;

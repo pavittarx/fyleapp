@@ -26,6 +26,12 @@ a {
   text-decoration: none;
 }
 
+input{
+  background: inherit;
+  border: 0;
+  outline: 0;
+}
+
 /* Global Classes */
 
 .para {
