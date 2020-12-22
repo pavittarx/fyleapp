@@ -119,14 +119,7 @@ export default ({ list, current, set }: Dropdown) => {
         <img src={DownIcon} alt="down icon" />
       </div>
       {open ? (
-        <SelectionDialog
-          list={list}
-          set={set}
-          close={() => {
-            console.log("Executing Close", open);
-            setOpen(false);
-          }}
-        />
+        <SelectionDialog list={list} set={set} close={() => setOpen(false)} />
       ) : null}
     </Dropdown.Wrapper>
   );
