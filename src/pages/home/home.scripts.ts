@@ -2,11 +2,9 @@ import axios from "axios";
 import pouch from "~/libs/pouch";
 
 export async function getDocuments(endpoint: string){
-  let doc : { _id: string, res: string | object }; 
+  let doc : { _id: string, res?: string | object } | undefined; 
   
-  pouch.get(endpoint).then(res => {
-    doc = res;
-  }).catch(err => {
+  doc = await pouch.get(endpoint).catch(err => {
     let d;
 
     if(err.error) {
@@ -21,12 +19,17 @@ export async function getDocuments(endpoint: string){
         return d;
 
       }).catch(
-        err => console.log("An error occurred while requesting endpoint: ", endpoint, "\n\n" ,err)
+        err => { 
+          console.log("An error occurred while requesting endpoint: ", endpoint, "\n\n" ,err); 
+          return {_id: endpoint, res: ''};
+        }
       );
     }
+
+    return d;
   });
 
-  return doc ? doc : {_id: '', res: ''};
+  return doc;
 };
 
 export function normalize(str: string){
