@@ -3,6 +3,9 @@
 :root {
   --bg: #f0f0f0;
   --fg: #222222eb;
+  --white: #fff;
+
+  --button-border: #777777cc;
 }
 
 /* Global Defaults */
@@ -15,7 +18,7 @@ body {
   margin: 0;
   padding: 0;
 
-  font-family: "Rosario", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 * {

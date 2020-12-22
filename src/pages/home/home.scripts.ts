@@ -33,10 +33,11 @@ export async function getDocuments(endpoint: string){
 };
 
 export function normalize(str: string){
+  if(!str) return;
+
   const val = str.split(" ")
             .map((s: string) => 
               s[0] + s.slice(1).toLowerCase())
             .join(' ');
-  console.log(val);
   return val;
 }

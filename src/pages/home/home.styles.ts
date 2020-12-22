@@ -11,7 +11,7 @@ export const HomeWrapper = styled.div`
 
 export const HomeHeader = {
   Wrapper: styled.header`
-    padding: 2rem 2rem 0rem;
+    padding: 2rem 2rem 0.5rem;
   `,
 
   Logo: styled.div`
@@ -27,24 +27,38 @@ export const HomeHeader = {
       align-items: center;
 
       padding: 1rem 0;
+
+      flex-wrap: wrap;
+
+      @media screen and (max-width: 500px){
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
     `,
     SearchBar: styled.div`
       display: flex;
       align-items: center;
 
       padding: 0.5rem 1.5rem;
-      background: #fff;
+      margin-top: 1rem;
+      background: var(--bg);
+      color: var(--fg);
+      border: 1px solid var(--button-border);
       border-radius: 100px;
 
       transition: 1s all ease-out;
+      opacity: 0.75;
 
       img {
         padding: 0 0.25rem;
       }
 
       &:focus-within {
-        opacity: 0.85;
-        border: 1px solid #777777cc;
+        opacity: 1;
+        color: var(--fg);
+        background: var(--white);
       }
     `,
   },
@@ -54,7 +68,6 @@ export const HomeMain = {
   Wrapper: styled.main`
     flex-grow: 1;
 
-    height: 2000px;
     overflow-x: hidden;
     overflow-y: scroll;
 
@@ -62,6 +75,7 @@ export const HomeMain = {
     flex-direction: column;
 
     padding: 1rem 2rem;
+    color: var(--fg);
   `,
 
   BodyArea: styled.section`
@@ -77,8 +91,9 @@ export const HomeMain = {
     margin: 10px;
     background: #ffffffa0;
     width: 20rem;
+    max-height: 20rem;
     border-radius: 20px;
-    padding: 1rem 1.5rem;
+    padding: 2rem 1.5rem 1rem;
 
     flex-grow: 1;
     opacity: 0.95;
@@ -91,6 +106,10 @@ export const HomeMain = {
     .para{
       font-family: 'sans-serif';
       font-size: 14px;
+    }
+
+    @media screen and (max-width: 500px){
+      max-height: 15rem;
     }
   `,
 };

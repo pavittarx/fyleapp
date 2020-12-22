@@ -3,6 +3,9 @@ export type Bank = {
   ifsc: string;
   address: string;
   branch: string;
+  state: string;
+  district: string;
+  city: string;
 }
 
 export type Context = {

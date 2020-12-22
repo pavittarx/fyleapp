@@ -3,17 +3,15 @@ import React, { useState, useEffect, useContext } from "react";
 import SearchIcon from "~/assets/icons/search.svg";
 import fyleAppLogo from "~/assets/images/fyleapp.png";
 import Dropdown from "~/shared/dropdown";
-import Home from "./home";
 
 import Context from "./home.context";
 import { HomeHeader } from "./home.styles";
 
 type SearchBar = {
-  query: string | undefined;
   set: Function;
 };
 
-const SearchBar = ({ query, set }: SearchBar) => {
+const SearchBar = ({ set }: SearchBar) => {
   const [searchText, setSearchText] = useState("");
 
   let typingTimer: number;
@@ -53,7 +51,6 @@ export default () => {
 
   const {
     currentCity,
-    searchQuery,
     setCurrentCity,
     setSearchQuery,
   } = useContext(Context);
@@ -69,7 +66,7 @@ export default () => {
           current={(currentCity ? currentCity : "City")!}
           set={setCurrentCity}
         />
-        <SearchBar query={searchQuery} set={setSearchQuery} />
+        <SearchBar set={setSearchQuery} />
       </HomeHeader.Menu.Wrapper>
     </HomeHeader.Wrapper>
   );

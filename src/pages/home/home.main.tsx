@@ -11,9 +11,11 @@ const BankCard = ({ details }: { details: Bank}) => {
   return (
     <HomeMain.BankCard>
       <div className="heading"> {normalize(details.name)} </div>
-
+      <div>
+        {details.branch}, {normalize(details.city)}, {normalize(details.state)}
+      </div>
       <div className="para">
-        {details.ifsc} <br />
+        {details.ifsc} <br /> <br/>
         {details.address}
       </div>
     </HomeMain.BankCard>
@@ -30,19 +32,12 @@ const Main = () => {
       });
   }, []);
 
-  useEffect(() => {
-    if(url)
-      getDocuments(url).then((doc: any) => {
-        setBanks(doc.res.branches);
-      });
-  }, [url]);
-
   return (
     <HomeMain.Wrapper>
       <HomeMain.BodyArea>
-        {banks && banks.length && banks.map((bank, index) => (
+        { (banks && banks.length)? banks.map((bank, index) => (
             <BankCard key={"c-" + index} details={bank} />
-          ))}
+          )) : null}
       </HomeMain.BodyArea>
     </HomeMain.Wrapper>
   );
