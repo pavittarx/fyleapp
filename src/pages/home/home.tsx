@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 
+import Preloader from "~/shared/preloader";
+
 import HContext from "./home.context";
 import Header from "./home.header";
 import Main from "./home.main";
+import Footer from "./home.footer";
 
 import { Bank, Context } from "./types";
 
 import { HomeWrapper, HomeFooter } from "./home.styles";
 
 const { getDocuments } = require("./home.scripts");
-
-const Footer = () => {
-  return <HomeFooter> Home Footer </HomeFooter>;
-};
 
 const Home: React.FC<{}> = () => {
   // Initial Url to make requess at
@@ -29,24 +28,39 @@ const Home: React.FC<{}> = () => {
   const [banks, setBanks] = useState();
   const [currentCity, setCurrentCity] = useState();
   const [searchQuery, setSearchQuery] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const [loading, setLoading] = useState(true);
-
-  console.log(searchQuery, currentCity, url, banks);
+  const [loading, setLoading] = useState(false);
 
   /* Update request url if the current city changes */
   useEffect(() => {
     if (currentCity) {
-      setUrl(endpoint + "?q=" + currentCity);
+      const x_url = new URL(url);
+      x_url.searchParams.set('q', currentCity!);
+      setUrl(x_url.toString());
+      setSearchQuery(undefined);
+      setCurrentPage(1);
     }
   }, [currentCity]);
 
   /* Update banks list when the url changes */
   useEffect(() => {
+    setLoading(true);
+
     if (url)
-      getDocuments(url).then((doc: any) => {
-        setBanksList(doc.res.branches);
-      });
+      getDocuments(url)
+        .then((doc: any) => {
+          setBanksList(doc.res.branches);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(
+            `An error occured while getting documents on url: ${url}`,
+            err
+          );
+          setLoading(false);
+          setUrl(endpoint);
+        });
   }, [url]);
 
   useEffect(() => {
@@ -54,7 +68,7 @@ const Home: React.FC<{}> = () => {
   }, [banksList]);
 
   useEffect(() => {
-    if(!searchQuery) setBanks(banksList);
+    if (!searchQuery) setBanks(banksList);
 
     if (searchQuery && banksList) {
       const filteredBanks = banksList.filter((bank) => {
@@ -75,10 +89,12 @@ const Home: React.FC<{}> = () => {
     url,
     banks,
     currentCity,
+    currentPage,
     searchQuery,
     setUrl,
     setBanks,
     setCurrentCity,
+    setCurrentPage,
     setSearchQuery,
   };
 
@@ -86,8 +102,8 @@ const Home: React.FC<{}> = () => {
     <HomeWrapper>
       <HContext.Provider value={value}>
         <Header />
-        <Main />
-        <Footer />
+        {!loading ? <Main /> : <Preloader />}
+        <Footer endpoint={endpoint}/>
       </HContext.Provider>
     </HomeWrapper>
   );

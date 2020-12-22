@@ -64,6 +64,37 @@ export const HomeHeader = {
   },
 };
 
+export const HomeFooter = {
+  Wrapper: styled.section`
+    padding: 1rem 2rem;
+  `,
+  
+  Pagination: styled.div`
+    position: absolute;
+    bottom: 1rem;
+    left: 45vw;
+    z-index: 9;
+
+    div{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0.25rem 1rem;
+      padding-top: 0.5rem;
+      border-radius: 100px;
+
+      background: var(--white);
+
+      span {
+        margin: 0 0.25rem;
+      }
+
+    }
+  `
+}
+
+
 export const HomeMain = {
   Wrapper: styled.main`
     flex-grow: 1;
@@ -102,6 +133,7 @@ export const HomeMain = {
     .heading{
       font-size: 20px;
       font-weight: 700;
+    }
 
     .para{
       font-family: 'sans-serif';
@@ -113,5 +145,3 @@ export const HomeMain = {
     }
   `,
 };
-
-export const HomeFooter = styled.footer``;

@@ -7,11 +7,13 @@ const initialState: Context = {
   currentCity: '',
   searchQuery: '',
   url: '',
+  currentPage: 1,
 
   setBanks: () => { },
   setCurrentCity: () => { },
   setSearchQuery: () =>{ },
-  setUrl: () => { }
+  setUrl: () => { },
+  setCurrentPage: () => {}
 }
 
 export default React.createContext(initialState);

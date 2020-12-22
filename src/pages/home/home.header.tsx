@@ -12,8 +12,16 @@ type SearchBar = {
 };
 
 const SearchBar = ({ set }: SearchBar) => {
+  const url = useContext(Context);
+
   const [searchText, setSearchText] = useState("");
 
+  useEffect(() => {
+    // Empty search if url changes
+    if (searchText) setSearchText("");
+  }, [url]);
+
+  // used to store timer ID
   let typingTimer: number;
 
   const start = () => {
@@ -49,11 +57,7 @@ const SearchBar = ({ set }: SearchBar) => {
 export default () => {
   const cityList = ["Delhi", "Mumbai", "Bangalore", "New Delhi", "Mysore"];
 
-  const {
-    currentCity,
-    setCurrentCity,
-    setSearchQuery,
-  } = useContext(Context);
+  const { currentCity, setCurrentCity, setSearchQuery } = useContext(Context);
 
   return (
     <HomeHeader.Wrapper>

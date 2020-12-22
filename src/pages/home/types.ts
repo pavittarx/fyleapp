@@ -13,9 +13,11 @@ export type Context = {
   currentCity: string | undefined;
   searchQuery: string | undefined;
   url: string | undefined;
+  currentPage: number;
 
   setBanks: Function,
   setCurrentCity: Function;
   setSearchQuery: Function;
   setUrl: Function;
+  setCurrentPage: Function;
 }
