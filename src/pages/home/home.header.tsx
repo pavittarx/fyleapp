@@ -55,7 +55,7 @@ const SearchBar = ({ set }: SearchBar) => {
 };
 
 export default () => {
-  const cityList = ["Delhi", "Mumbai", "Bangalore", "New Delhi", "Mysore"];
+  const cityList = ["Delhi", "Mumbai", "Bangalore", "Kolkata", "Mysore"];
 
   const { currentCity, setCurrentCity, setSearchQuery } = useContext(Context);
 
