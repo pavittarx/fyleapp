@@ -35,7 +35,17 @@ input{
   outline: 0;
 }
 
-/* Global Classes */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 .para {
   margin: 1rem 0;

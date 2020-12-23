@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import BackIcon from "~/assets/icons/prev.svg";
 import NextIcon from "~/assets/icons/next.svg";
@@ -6,10 +6,17 @@ import NextIcon from "~/assets/icons/next.svg";
 import Context from "./home.context";
 import { HomeFooter } from "./home.styles";
 
+import { LIMIT } from "~/libs/constants";
+
 export default function ({ endpoint }: { endpoint: string }) {
   const { url, currentPage, setUrl, setCurrentPage } = useContext(Context);
+  const [limit, setLimit] = useState(LIMIT);
 
-  const LIMIT = 100;
+  useEffect(() => {
+    const x_url = new URL(url!);
+    x_url.searchParams.set("limit", limit.toString());
+    setUrl(x_url.toString());
+  }, [limit, url]);
 
   const back = () => {
     if (currentPage === 1) return;
@@ -18,7 +25,6 @@ export default function ({ endpoint }: { endpoint: string }) {
       const x_url = new URL(url!);
       const offset = (currentPage - 2) * LIMIT;
 
-      x_url.searchParams.set("limit", LIMIT.toString());
       x_url.searchParams.set("offset", offset.toString());
 
       setUrl(x_url.toString());
@@ -39,22 +45,29 @@ export default function ({ endpoint }: { endpoint: string }) {
 
   return (
     <HomeFooter.Wrapper>
+      <HomeFooter.Pagination>
+        <input
+          type="number"
+          value={limit}
+          placeholder="Limit"
+          onChange={(e) => {
+            !isNaN(e.target.value)
+              ? setLimit(parseInt(e.target.value))
+              : setLimit(LIMIT);
+          }}
+        />
+        <span onClick={back}>
+          <img src={BackIcon} alt="back_icon" />
+        </span>
+        <span> {currentPage} </span>
+        <span onClick={next}>
+          <img src={NextIcon} alt="forward" />
+        </span>
+      </HomeFooter.Pagination>
       Developed by{" "}
       <a href="https://github.com/pavittarx" target="_blank">
-        {" "}
-        @pavittarx{" "}
+        @pavittarx
       </a>
-      <HomeFooter.Pagination>
-        <div>
-          <span onClick={back}>
-            <img src={BackIcon} alt="back_icon" />
-          </span>
-          <span> {currentPage} </span>
-          <span onClick={next}>
-            <img src={NextIcon} alt="forward" />
-          </span>
-        </div>
-      </HomeFooter.Pagination>
     </HomeFooter.Wrapper>
   );
 }

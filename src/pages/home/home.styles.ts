@@ -70,27 +70,22 @@ export const HomeFooter = {
   `,
   
   Pagination: styled.div`
-    position: absolute;
-    bottom: 1rem;
-    left: 45vw;
-    z-index: 9;
+    display: inline-flex;
+    align-items: center;
 
-    div{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
+    input[type="number"]{
+      background: #ffffff;
+      color: #222222cc;
       padding: 0.25rem 1rem;
-      padding-top: 0.5rem;
-      border-radius: 100px;
+      max-width: 5rem;
+    }
 
-      background: var(--white);
-
-      span {
-        margin: 0 0.25rem;
-      }
+    span{
+      margin: -0.25rem 0.5rem;
 
     }
+
+    margin: 0 2rem;
   `
 }
 
